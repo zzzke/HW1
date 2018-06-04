@@ -6,6 +6,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
+// hw1 router
 var hw1Router = require('./routes/hw1');
 
 var app = express();
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use('/', indexRouter);
+//hw1 router
 app.use('/hw1', hw1Router);
 
 // catch 404 and forward to error handler
