@@ -4,12 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var hw1Router = require('./routes/hw1');
+var hw2Router = require('./routes/hw2');
 
 var app = express();
 
+
+mongoose.connect('mongodb://localhost:27017/hw3');
+const db = mongoose.connection
+db.once('open', function () {
+    console.log('Connection successful.')
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +31,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use('/', indexRouter);
 app.use('/hw1', hw1Router);
+app.use('/hw2', hw2Router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
